@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8" />
+</head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container py-4">
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+				<form th:action="@{/editStyles}" th:object="${eStyles}"
+					method="post">
+					<div class="form-group row">
+						<label class="col-sm-1 col-form-label">Name</label>
+						<div class="col-sm-6">
+							<input type="text" th:field="*{name}" class="form-control"
+								th:errorclass="'form-control alert-danger'" /> <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
+						</div>
+					</div>
+					<div>
+						<input type="submit" value="Crear Styles" class="btn btn-primary " />
+					</div>
+					<input type="hidden" th:field="*{id}" />
+				</form>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

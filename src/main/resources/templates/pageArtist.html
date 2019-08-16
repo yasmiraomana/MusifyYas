@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8" />
+</head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container py-4"
+		style="width: 48rem; align-content: center;">
+		<div class="card bg-light" style="align-content: center;">
+			<div class="card-header" style="align-content: center;"
+				th:text="${titulo}"></div>
+			<div class="card-body" style="align-content: center;">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Nombre</th>
+							<th>Año</th>
+							<th>Ver</th>
+							<th>Editar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="artist: ${eArtist}">
+							<td th:text="${artist.id}" hidden="true"></td>
+							<td th:text="${artist.name}"></td>
+							<td th:text="${artist.year}"></td>
+							<td><a class="btn btn-primary btn-xs"
+								th:href="@{/editArtist/} + ${artist.id} + '/' + ${2} + '/' + ${1}"
+								th:text="'Ver'"></a></td>
+							<td><a class="btn btn-success btn-xs"
+								th:href="@{/editArtist/} + ${artist.id} + '/' + ${3} + '/' + ${2}"
+								th:text="'Editar'"></a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+
+</body>
+</html>

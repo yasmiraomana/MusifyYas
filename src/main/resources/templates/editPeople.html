@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8" />
+</head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container py-4"
+		style="width: 48rem; align-content: center;">
+		<div class="card bg-light" style="align-content: center;">
+			<div class="card-header" style="align-content: center;"
+				th:text="${titulo}"></div>
+			<div class="card-body" style="width: 48rem; align-content: center;">
+				<form th:action="@{/editPeople}" th:object="${ePeople}"
+					method="post">
+					<div class="form-group justify-content-center row">
+						<label class="col-sm-2 col-form-label">Nombre</label>
+						<div class="col-sm-6">
+							<input type="text" th:field="*{name}" class="form-control"
+								th:errorclass="'form-control alert-danger'" /> <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
+						</div>
+					</div>
+					<div class="form-group justify-content-center row">
+						<label class="col-sm-2 col-form-label">Años</label>
+						<div class="col-sm-6">
+							<input type="text" th:field="*{years}" class="form-control"
+								th:errorclass="'form-control alert-danger'" /> <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('years')}" th:errors="*{years}"></small>
+						</div>
+					</div>
+					<div  class="form-group justify-content-center row" th:if="${editar == 1}">
+						<input type="submit" value="Crear"
+							class="btn btn-primary " />
+					</div>
+					<div  class="form-group justify-content-center row" th:if="${editar == 2}">
+						<input type="submit" value="Editar"
+							class="btn btn-primary " />
+					</div>
+					<input type="hidden" th:field="*{id}" />
+				</form>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

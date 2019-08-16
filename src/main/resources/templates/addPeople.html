@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8" />
+</head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container py-4"
+		style="width: 48rem; align-content: center;">
+		<div class="card bg-light" style="align-content: center;">
+			<div class="card-header" style="align-content: center;"
+				th:text="${titulo}"></div>
+			<div class="card-body" style="width: 48rem; align-content: center;">
+				<form th:action="@{/addPeople}" th:object="${eArtist}" method="post"
+					class="justify-content-center">
+					<div class="form-group justify-content-center row">
+						<label class="col-sm-2 col-form-label">Artista</label>
+						<div class="col-sm-6">
+							<select id="item" name="item" th:field="*{id}"
+								class="form-control">
+								<option th:each="listArtist : ${session.listArtist}"
+									th:value="${listArtist.id}" th:utext="${listArtist.name}" />
+							</select>
+						</div>
+					</div>
+					<div class="form-group d-flex justify-content-center row">
+						<input type="submit" value="Buscar Personas"
+							class="btn btn-primary " id="idBuscar" th:name="idBuscar" />
+					</div>
+
+					<div class="container py-4">
+						<div class="card bg-light" style="align-content: center;">
+							<div class="card-header"
+								th:text="'Gente disponible para el artista seleccionado'"></div>
+							<div class="card-body" style="align-content: center;">
+								<div class="form-group justify-content-center row">
+									<label class="col-sm-2 col-form-label">Gente</label>
+									<div class="col-sm-6">
+										<select th:field="*{listMembers}" class="form-control"
+											multiple="multiple">
+											<option th:fragment="membersList"
+												th:each="members : ${session.listMembers}"
+												th:value="${members.id}" th:utext="${members.name}" />
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="form-group justify-content-center row">
+								<input type="submit" value="Asignar" class="btn btn-primary " />
+							</div>
+
+						</div>
+
+					</div>
+					<input type="hidden" th:field="*{id}" />
+
+				</form>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

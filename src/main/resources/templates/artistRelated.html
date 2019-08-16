@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8" />
+</head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container py-4"
+		style="width: 48rem; align-content: center;">
+		<div class="card bg-light" style="align-content: center;">
+			<div class="card-header" style="align-content: center;"
+				th:text="${titulo}"></div>
+			<div class="card-body" style="width: 48rem; align-content: center;">
+				<form th:action="@{/relatedArtist}" th:object="${eArtist}"
+					method="post">
+					<div class="form-group justify-content-center row">
+						<label class="col-sm-2 col-form-label">Artista</label>
+						<div class="col-sm-6">
+							<select th:field="*{id}" class="form-control">
+								<option th:each="listArtist : ${session.listArtist}"
+									th:value="${listArtist.id}" th:utext="${listArtist.name}" />
+							</select>
+						</div>
+					</div>
+					<div class="form-group justify-content-center row">
+						<label class="col-sm-2 col-form-label">Artista Relacionado</label>
+						<div class="col-sm-6">
+							<select th:field="*{listArtistRelated}" class="form-control"
+								multiple="multiple">
+								<option th:each="artists : ${session.listArtist}"
+									th:value="${artists.id}" th:utext="${artists.name}" />
+							</select>
+						</div>
+					</div>
+
+					<div class="form-group justify-content-center row">
+						<input type="submit" value="Relacionar" class="btn btn-primary " />
+					</div>
+					<input type="hidden" th:field="*{id}" />
+				</form>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

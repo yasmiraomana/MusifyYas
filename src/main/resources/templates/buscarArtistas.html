@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8" />
+</head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container py-4" style="width: 48rem; align-content: center;">
+		<div class="card bg-light"
+			style="align-content: center;">
+			<div class="card-header" style="align-content: center;"
+				th:text="${titulo}"></div>
+			<div class="card-body" style="width: 48rem; align-content: center;">
+				<form th:action="@{/findArtist/}" th:object="${eArtist}"
+					method="post" class="justify-content-center">
+					<div class="form-group justify-content-center row">
+						<label class="col-sm-2 col-form-label">Estilos</label>
+						<div class="col-sm-6">
+							<select th:field="*{id}" class="form-control">
+								<option th:each="listStyle : ${session.listStyles}"
+									th:value="${listStyle.id}" th:utext="${listStyle.name}" />
+							</select>
+						</div>
+					</div>
+					<div class="form-group d-flex justify-content-center row">
+						<input type="submit" value="Buscar" class="btn btn-primary " />
+					</div>
+					<input type="hidden" th:field="*{id}" />
+				</form>
+			</div>
+			<div class="card bg-light" th:if="${session.listArtist!=NULL}">				
+				<div class="card-body">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Nombre</th>
+								<th>Año</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="artist: ${session.listArtist}">
+								<td th:text="${artist.id}" hidden="true"></td>
+								<td th:text="${artist.name}"></td>
+								<td th:text="${artist.year}"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
