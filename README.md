@@ -1,4 +1,4 @@
-# MusifyYas
+# MusicColletion
 Herramientas usadas: 
   # 1.- Tecnologías Back-End:
       a.- Spring Boot
@@ -14,8 +14,9 @@ Herramientas usadas:
   #  4.- Patrón de diseño: MVC con Dto.
   # Instalación:
       a.- Instalar el IDE arriba mencionado
-      b.- El .zip descargado del repositorio ponerlo en un directorio, el cual será el workspace a seleccionar al abrir el Spring Tool Suite.
-      c.- Ir a File, import, seleccionar la opción Existing Projects into WorkSpace, dar click en Next, seleccionar la opción Select archive file, en Browse seleccionar el .zip que dejamos en el Workspace, finish y esperar a que carguen las librerías y recursos necesarios del proyecto.
+      b.- Descomprimir El .zip descargado del repositorio ponerlo en un directorio, el cual será el workspace a seleccionar al abrir el Spring Tool Suite.
+      c.- Ir a File, import, seleccionar la opción Existing Maven Projects, dar click en Next, seleccionar el root directory donde esta la carpeta descomprimida, pulsar finish, 
+	   y esperar a que carguen las librerías y recursos necesarios del proyecto.
       d.- Ejecutar la aplicación: 
           d.1 .- Seleccionar el proyecto, dar click derecho Run As -> Spring Boot App.
           d.2.- Ejecutar http://localhost:8080/index
